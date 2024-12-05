@@ -34,6 +34,7 @@ const Login: React.FC = () => {
         setLoading(true);
         try {
             // Send POST request to backend
+            console.log('Request URL:', `${process.env.API_URL}/api/login`);
             const response = await fetch(`${`3.137.70.243:80`}/api/login`, {
                 method: 'POST',
                 headers: {
