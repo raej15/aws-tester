@@ -22,9 +22,10 @@ const prisma = new PrismaClient();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "https://main.d37jjc6afovpjz.amplifyapp.com",
+    // origin: "https://main.d37jjc6afovpjz.amplifyapp.com",
+    origin: '*',
     methods: ["GET", "POST"],
-
+    credentials: true,
   },
 });
 
