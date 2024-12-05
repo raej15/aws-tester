@@ -32,7 +32,9 @@ interface User {
   firstName: string;
   lastName: string;
 }
-const socket = io(process.env.apiUrl);
+const API_URL = 'https://learnlinkserverhost.zapto.org';
+
+const socket = io(API_URL);
 
 
 
@@ -53,11 +55,13 @@ const Messaging: React.FC = () => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const chatWindowRef = React.useRef<HTMLDivElement | null>(null);
+  const API_URL = 'https://learnlinkserverhost.zapto.org';
+
 
 
   useEffect(() => {
     // Fetch users and chats from the API when the component mounts
-    axios.get(`${process.env.apiUrl}/api/users`)
+    axios.get(`${API_URL}/api/users`)
       .then((response) => setUsers(response.data))
       .catch((error) => console.error('Error fetching users:', error));
 
@@ -66,7 +70,7 @@ const Messaging: React.FC = () => {
   
     const token = localStorage.getItem('token');
     console.log(token);
-    axios.get(`${process.env.apiUrl}/api/chats`, {
+    axios.get(`${API_URL}/api/chats`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => {
@@ -82,7 +86,7 @@ const Messaging: React.FC = () => {
      
 
     if (token) {
-      axios.get(`${process.env.apiUrl}/api/currentUser`, {
+      axios.get(`${API_URL}/api/currentUser`, {
         headers: { Authorization: `Bearer ${token}` },
       })
         .then((response) => setCurrentUserId(response.data.id))
@@ -247,7 +251,7 @@ const Messaging: React.FC = () => {
       }
   
       const response = await axios.post(
-        `${process.env.apiUrl}/api/chats/${user.id}`,
+        `${API_URL}/api/chats/${user.id}`,
         payload,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -269,7 +273,7 @@ const Messaging: React.FC = () => {
       };
 
       // const studyGroupResponse = await axios.post(
-      //   `${process.env.apiUrl}/api/study-groups`, // Endpoint for study groups
+      //   `${API_URL}/api/study-groups`, // Endpoint for study groups
       //   studyGroupPayload,
       //   { headers: { Authorization: `Bearer ${token}` }}
       // );
@@ -321,7 +325,7 @@ const Messaging: React.FC = () => {
         return;
       }
 
-      await axios.delete(`http://localhost:2020/api/chats/${chatId}`, {
+      await axios.delete(`${API_URL}/api/chats/${chatId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
