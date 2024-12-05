@@ -61,6 +61,8 @@ const JWT_SECRET = env.JWT_SECRET || 'your_default_jwt_secret';
 
 app.use(express.json());
 app.use(cors(corsOptions));
+app.options('*', cors());  // Preflight request
+
 
 // access images for website in public folder
 app.use('/public', express.static(path.join(__dirname, '..', 'learnlink-ui', 'public')));
