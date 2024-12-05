@@ -1,0 +1,148 @@
+:root {
+  font-family: Inter, sans-serif;
+  font-feature-settings: 'liga' 1, 'calt' 1; /* Fix for Chrome */
+}
+@supports (font-variation-settings: normal) {
+  :root { font-family: InterVariable, sans-serif; }
+}
+
+body .welcome {
+  background-image: url('../components/Curve.svg');
+  background-repeat: no-repeat;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: medium;
+  font-family: 'Inter';
+}
+
+/* Welcome section styling */
+.welcome {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  gap: 50px;
+  align-items: center;
+  background-color: #D4EAF7;
+  padding: 20px;
+}
+
+/* Logo styling */
+.WelcomeLogo {
+  width: 600px; /* Set the desired width for the logo */
+  height: auto; /* Adjust the height to maintain the aspect ratio */  
+}
+
+/* Welcome page header */
+.WelcomePage {
+  width: 70%; /* Set the desired width for the page */
+  margin-top: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Centering the Welcome, subtext, and button */
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 20px;
+  width: 100%;
+}
+
+/* Main heading */
+.well {
+  font-size: 56px; /* Slightly larger for better prominence */
+  color: #004c72;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin-bottom: 0;
+}
+
+/* Paragraph styling */
+p {
+  font-size: 25px; /* Adjusted for better readability */
+  color: #004c72;
+}
+
+/* Button styling */
+.getStarted {
+  background-color: #FEAD2B;
+  color: #FFFEFB;
+  font-weight: 700;
+  font-size: 20px; /* Increased size for better proportion */
+  text-align: center;
+  border-radius: 12px;
+  border-color: #FEAD2B;
+  width: 25%;
+  max-width: 600px;
+  height: 50px; /* Adjusted height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 1.2px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease;
+}
+
+.getStarted:hover {
+  background-color: #e8911d; /* Darker hover color */
+  transform: scale(1.05); /* Subtle scale on hover */
+}
+
+/* Menu button group styling */
+.menuButtonGroup {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Space between buttons */
+  flex-wrap: wrap; /* Ensure buttons wrap on smaller screens */
+  width: 100%;
+}
+
+/* Menu buttons */
+.menuButtons {
+  font-size: 25px;
+  font-weight: 700;
+  width: 18%;
+  height: 200px;
+  text-align: center;
+  border-radius: 15px;
+  padding: 20px;
+  background-color: #00668C;
+  color: #FFFEFB;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease;
+}
+
+.menuButtons img {
+  max-width: 100%; /* Ensures the image doesn't exceed the width of its parent div */
+  height: auto; /* Maintains the aspect ratio */
+  display: block; /* Removes any inline spacing issues */
+  margin: 0 auto; /* Centers the image inside the div */
+}
+
+/* Responsive behavior: Ensure layout is mobile-friendly */
+@media (max-width: 768px) {
+  .welcome {
+      gap: 5px;
+  }
+
+  .well, p, .getStarted, button {
+      font-size: 50px;
+  }
+
+  .Logo {
+      width: 80%;
+  }
+
+  .menuButtonGroup {
+      gap: 10px; /* Reduce gap on smaller screens */
+  }
+
+  .menuButtons {
+      width: 120px; /* Smaller button size for mobile */
+  }
+}

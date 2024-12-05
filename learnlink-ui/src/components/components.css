@@ -1,0 +1,195 @@
+.Logo {
+  width: 100%; /* Ensures the logo scales based on the container */
+  position: relative;
+  margin: auto; /* Centers the logo and adds space around it */
+  padding-bottom: 0;
+}
+
+.Logo svg {
+  width: 100%; /* Ensures SVG scales with the container */
+  height: auto;
+}
+
+.Copyright {
+  font-size: 14px;
+  color: #00668C;
+  text-align: center;
+  width: 100%;
+  position: fixed;
+  line-height: 50px;
+  bottom: 0;
+  background-color: #D4EAF7;
+  height: 50px; /* Define a fixed height for the footer */
+  z-index: 1000; /* Ensure it stays on top of other elements */
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background-color: #D4EAF7;
+  box-sizing: border-box;
+  z-index: 10; /* Make sure it's below the dropdown */
+  overflow: visible; /* Ensure overflow is visible, so the dropdown shows up */
+}
+
+.nav-logo {
+  width: 200px; /* Set the desired width for the logo */
+  height: auto; /* Adjust the height to maintain the aspect ratio */
+  flex-shrink: 1; /* Ensure logo doesn't shrink */
+}
+
+.nav-links {
+  display: flex;
+  flex-shrink: 1; /* Allow links to shrink */
+  overflow: hidden;
+}
+
+.nav-links a {
+  margin: 0 1rem;
+  color: #00668C;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: medium;
+  white-space: nowrap; /* Prevent links from wrapping */
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+.nav-icons {
+  display: flex;
+  align-items: center;
+  flex-shrink: 1; /* Prevent icons from shrinking */
+}
+
+.search-bar {
+  position: relative;
+  margin-right: 1rem;
+  padding-right: 20px;
+  flex-grow: 1;
+  min-width: 100px; /* Set a minimum width before it fully disappears */
+  overflow: visible; /* Prevent overflow */
+  transition: opacity 0.3s ease; /* Smooth disappearance */
+}
+
+.search-bar input {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  width: 100%; /* Allow full shrinking */
+}
+
+.search-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #00668C;
+}
+
+.icon {
+  font-size: 1.5rem;
+  margin-left: 1rem;
+  color: #00668C;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .navbar {
+    padding: 1rem; /* Adjust padding for smaller screens */
+  }
+  .nav-logo {
+    display: none; /* Adjust logo size for smaller screens */
+  }
+  .nav-icons .icon{
+    font-size: small;
+  }
+
+  .nav-links a {
+    font-size: small; /* Adjust font size of links for better fit */
+    margin: 0 0.5rem;
+  }
+
+}
+
+@media (max-width: 400px) {
+  .search-bar {
+    display: none; /* Hide search bar on small screens */
+  }
+}
+.sidenav {
+  /* margin-top: 90px;
+  margin-bottom: 50px; */
+  width: 250px;
+  min-width: 250px;
+  /* height:inherit; */
+  position: relative;
+  height: 100%;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #D9D9D9;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-top: 20px;
+  text-align: left;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 8px;
+  margin-right: 15px;
+  margin-left: 15px;
+  margin-top: 7px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #313D44;
+  display: block;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a.active,  .sidenav a:hover{
+  background-color: white; /* White background on hover */
+  border-radius: 5px; /* Rounded corners on hover */
+  font-weight: bold; /* Bold text on hover */
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.dropdown {
+  position: absolute;
+  top: 50%; /* Position dropdown below the input */
+  left: 0;
+  right: 0;
+  max-height: 300px;
+  background-color: #fff;
+  border: 1px solid #00678c00;
+  border-radius: 2px;
+  max-height: 300px;
+  overflow-y: scroll;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding-inline-start: 0;
+}
+
+.dropdown p {
+  color: black;
+  padding: 0.5rem;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  cursor: pointer;
+  font-size: small;
+  padding-inline-start: 20px;
+  margin:0;
+  /* border-bottom: 1px solid #00678c5c; */
+}
+
+.dropdown p:hover {
+  background-color: #D4EAF7;
+}

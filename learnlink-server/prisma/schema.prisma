@@ -1,0 +1,163 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum StudyTags {
+  Quiet
+  Background_Noise
+  Music_Allowed
+  Solo_Study
+  Group_Discussion
+  Pair_Work
+  Morning
+  Afternoon
+  Evening
+  Night
+  Visual_Learner
+  Auditory_Learner
+}
+
+enum Grade {
+  Freshman
+  Sophomore
+  Junior
+  Senior
+  Graduate_Student
+}
+
+enum Gender {
+  Female
+  Male
+  Nonbinary
+  Other
+  Prefer_not_to_say
+}
+
+enum SwipeAction {
+  No
+  Yes
+}
+
+model User {
+  id                  Int            @id @default(autoincrement())
+  created_at          DateTime       @default(now())
+  updated_at          DateTime       @updatedAt
+
+  firstName           String
+  lastName            String
+  email               String         @unique 
+  username            String         @unique
+  password            String
+
+
+  ideal_match_factor  String?
+  age                 Int?
+  college             String?
+  major               String?
+  grade               Grade?
+  relevant_courses    String[]
+  study_method        String?
+  bio                 String?
+  gender              Gender?
+  profilePic          String?
+  studyHabitTags      StudyTags[]       // Array of tags for study habits
+
+
+  studyGroups         StudyGroup[]   @relation("UserStudyGroups")
+  createdStudyGroups  StudyGroup[]   @relation("CreatedStudyGroups")
+
+  swipesGiven         Swipe[]        @relation("SwipesGiven")
+  swipesReceived      Swipe[]        @relation("SwipesReceived")
+
+  matchesAsUser1      Match[]        @relation("MatchUser1")
+  matchesAsUser2      Match[]        @relation("MatchUser2")
+  
+  chats               Chat[]         @relation("ChatUsers")
+  messages            Message[]
+  notifications       Notification[]
+}
+
+model StudyGroup {
+  id          Int       @id @default(autoincrement())
+  name        String
+  subject     String?
+  description String?
+  created_by  Int
+  created_at  DateTime  @default(now())
+  creator     User      @relation("CreatedStudyGroups", fields: [created_by], references: [id])
+  users       User[]    @relation("UserStudyGroups")
+  matches     Match[]   @relation("StudyGroupMatches")
+
+  // Swipe relation: Users can swipe on a study group.
+  swipesGiven  Swipe[]  @relation("StudyGroupSwipes")
+
+
+}
+
+model Swipe {
+  id           Int      @id @default(autoincrement())
+  userId       Int
+  targetUserId Int?     // Optional field to reference the target User
+  targetGroupId Int?    // Optional field to reference the target StudyGroup
+  direction    SwipeAction
+  user         User     @relation("SwipesGiven", fields: [userId], references: [id], onDelete: Cascade)
+  targetUser   User?    @relation("SwipesReceived", fields: [targetUserId], references: [id], onDelete: Cascade)
+  targetGroup  StudyGroup? @relation("StudyGroupSwipes", fields: [targetGroupId], references: [id])
+  createdAt    DateTime @default(now())
+}
+
+
+model Match {
+  id            Int      @id @default(autoincrement())
+  user1Id       Int
+  user2Id       Int?
+  studyGroupId  Int?
+  user1         User     @relation("MatchUser1", fields: [user1Id], references: [id], onDelete: Cascade)
+  user2         User?    @relation("MatchUser2", fields: [user2Id], references: [id], onDelete: Cascade)
+  studyGroup    StudyGroup? @relation("StudyGroupMatches", fields: [studyGroupId], references: [id], onDelete: Cascade)
+  createdAt     DateTime @default(now())
+
+  // If the study group is null, this is a user-to-user match
+  isStudyGroupMatch Boolean @default(false)
+}
+
+model Chat {
+  id        Int       @id @default(autoincrement())
+  name      String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+  users     User[]    @relation("ChatUsers") // One-to-many through the join table
+  messages  Message[] // One-to-many relationship to Message
+}
+
+model Message {
+  id           Int         @id @default(autoincrement())
+  content      String
+  createdAt    DateTime    @default(now())
+  userId       Int
+  chatId       Int
+  user         User        @relation(fields: [userId], references: [id]) // One-to-many relation to User
+  chat         Chat        @relation(fields: [chatId], references: [id]) // One-to-many relation to Chat
+}
+
+model Notification {
+  id         Int      @id @default(autoincrement())
+  user_id    Int
+  type       String
+  message    String
+  read       Boolean  @default(false)
+  created_at DateTime @default(now())
+
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
