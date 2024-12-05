@@ -9,6 +9,7 @@ const Settings: React.FC = () => {
   const [userId, setUserId] = useState<string | null>(null);
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
+  const API_URL = 'https://learnlinkserverhost.zapto.org';
 
 
   // Fetch the logged-in user ID
@@ -33,7 +34,7 @@ const Settings: React.FC = () => {
         return;
       }
   
-      const response = await fetch(`${process.env.apiUrl}/api/users/${userId}`, {
+      const response = await fetch(`${API_URL}/api/users/${userId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
