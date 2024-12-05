@@ -43,14 +43,14 @@ const io = new Server(server, {
   cors: {
     // origin: "https://main.d37jjc6afovpjz.amplifyapp.com",
     origin: '*',
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   },
 });
 
 const corsOptions = {
   origin: 'https://main.d37jjc6afovpjz.amplifyapp.com',  // Your Amplify frontend URL
-  methods: ['GET', 'POST'], // Methods you want to allow
+  methods: ["GET", "POST", "PUT", "DELETE"], // Methods you want to allow
   allowedHeaders: ['Content-Type', 'Authorization'], // Headers you want to allow
 };
 
