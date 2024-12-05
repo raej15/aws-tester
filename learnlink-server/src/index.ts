@@ -24,10 +24,15 @@ const io = new Server(server, {
   cors: {
     origin: "https://main.d37jjc6afovpjz.amplifyapp.com",
     methods: ["GET", "POST"],
+
   },
 });
 
-
+const corsOptions = {
+  origin: 'https://main.d37jjc6afovpjz.amplifyapp.com',  // Your Amplify frontend URL
+  methods: ['GET', 'POST'], // Methods you want to allow
+  allowedHeaders: ['Content-Type', 'Authorization'], // Headers you want to allow
+};
 
 
 const REACT_APP_API_URL = 2020;
@@ -35,7 +40,7 @@ const JWT_SECRET = env.JWT_SECRET || 'your_default_jwt_secret';
 
 
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 
 // access images for website in public folder
 app.use('/public', express.static(path.join(__dirname, '..', 'learnlink-ui', 'public')));
