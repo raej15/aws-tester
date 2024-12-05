@@ -321,9 +321,7 @@
   color: red;
   margin-left: 5px;
 }
-.MessageBubble {
-  display: flex;
-}
+
 .MyMessage {
   background-color: #daf8cb; /* light green */
   align-self: flex-end;
