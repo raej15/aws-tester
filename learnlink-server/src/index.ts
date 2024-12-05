@@ -31,7 +31,12 @@ const server = https.createServer(credentials, app);
 
 const httpApp = express();
 httpApp.use((req, res) => {
-    res.redirect(`https://${req.headers.host}${req.url}`);
+  const host = req.headers.host?.replace(/:80$/, ''); // Handle cases where ":80" might be appended
+  res.redirect(`https://${host}${req.url}`);
+});
+
+http.createServer(httpApp).listen(80, () => {
+  console.log('Redirecting HTTP traffic to HTTPS...');
 });
 
 http.createServer(httpApp).listen(80, () => {
@@ -1083,7 +1088,6 @@ app.post ('/api/forgotpassword', async (req, res):Promise<any> => {
 
 /********* LISTEN FUNCT */
 
-// Start the server on port 2020
-server.listen(REACT_APP_API_URL, () => {
-  console.log(`server running on localhost:${REACT_APP_API_URL}`);
+server.listen(443, '0.0.0.0', () => {
+  console.log('HTTPS Server running on port 443');
 });
