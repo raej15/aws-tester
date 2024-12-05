@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { login } from '../services/authService';
 import React, { useState } from 'react';
-const API_URL = process.env.API_URL;
+const API_URL = process.env.API_URL || 'http://3.137.70.243:80';
 
 type LoginInputs = {
     userName: string;
