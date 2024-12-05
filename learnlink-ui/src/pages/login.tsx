@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { login } from '../services/authService';
 import React, { useState } from 'react';
-const API_URL = 'https://3.137.70.243:80';
+const API_URL = 'https://learnlinkserverhost.zapto.org';
 
 type LoginInputs = {
     userName: string;
