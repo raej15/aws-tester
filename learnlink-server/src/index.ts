@@ -39,11 +39,6 @@ http.createServer(httpApp).listen(80, () => {
   console.log('Redirecting HTTP traffic to HTTPS...');
 });
 
-http.createServer(httpApp).listen(80, () => {
-    console.log('Redirecting HTTP traffic to HTTPS...');
-});
-
-
 const io = new Server(server, {
   cors: {
     // origin: "https://main.d37jjc6afovpjz.amplifyapp.com",
