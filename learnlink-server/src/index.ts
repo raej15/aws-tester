@@ -30,7 +30,7 @@ const io = new Server(server, {
 
 
 
-const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
+const REACT_APP_API_URL = 2020;
 const JWT_SECRET = env.JWT_SECRET || 'your_default_jwt_secret';
 
 
@@ -54,6 +54,10 @@ const authenticate = (req: Request, res: Response, next: Function) => {
     res.status(401).json({ error: 'Invalid token' });
   }
 };
+
+app.get('/', (req, res) => {
+  res.send('Hello, World! Your backend is up and running!');
+});
 
 // Signup endpoint
 app.post("/api/users", async (req, res): Promise<any> => {
@@ -1053,6 +1057,6 @@ app.post ('/api/forgotpassword', async (req, res):Promise<any> => {
 /********* LISTEN FUNCT */
 
 // Start the server on port 2020
-server.listen(process.env.REACT_APP_API_URL, () => {
-  console.log(`server running on localhost:${process.env.REACT_APP_API_URL}`);
+server.listen(REACT_APP_API_URL, () => {
+  console.log(`server running on localhost:${REACT_APP_API_URL}`);
 });
