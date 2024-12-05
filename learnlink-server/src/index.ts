@@ -11,15 +11,34 @@ import path, { parse } from 'path';
 import { JwtPayload } from "jsonwebtoken";
 import nodemailer from "nodemailer";
 import { profile } from "console";
+import fs from 'fs';
+import https from 'https';
+
 
 interface CustomJwtPayload extends JwtPayload {
   userId: number; // Make userId an integer
 }
 
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/learnlinkserverhost.zapto.org/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/learnlinkserverhost.zapto.org/fullchain.pem', 'utf8');
+const credentials = { key: privateKey, cert: certificate };
+
+
 const app = express();
 const prisma = new PrismaClient();
 
-const server = http.createServer(app);
+const server = https.createServer(credentials, app);
+
+const httpApp = express();
+httpApp.use((req, res) => {
+    res.redirect(`https://${req.headers.host}${req.url}`);
+});
+
+http.createServer(httpApp).listen(80, () => {
+    console.log('Redirecting HTTP traffic to HTTPS...');
+});
+
+
 const io = new Server(server, {
   cors: {
     // origin: "https://main.d37jjc6afovpjz.amplifyapp.com",

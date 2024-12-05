@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { login } from '../services/authService';
 import React, { useState } from 'react';
-const API_URL = process.env.API_URL || 'http://3.137.70.243:80';
+const API_URL = 'https://3.137.70.243:80';
 
 type LoginInputs = {
     userName: string;
@@ -36,7 +36,7 @@ const Login: React.FC = () => {
         try {
             // Send POST request to backend
             console.log('Request URL:', `${API_URL}/api/login`);
-            const response = await fetch(`${`http://3.137.70.243:80`}/api/login`, {
+            const response = await fetch(`${API_URL}/api/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

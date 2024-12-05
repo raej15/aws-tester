@@ -20,6 +20,8 @@ RUN npx prisma generate
 
 # Step 7: Expose the port your app will run on (default port 2020)
 EXPOSE 2020
+EXPOSE 80
+EXPOSE 443
 
 # Step 8: Start the app using npm
 CMD ["npm", "start"]
