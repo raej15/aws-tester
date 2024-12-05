@@ -23,7 +23,7 @@ const UpdateEmail = () => {
     setError('');
 
     try {
-      const response = await fetch('http://localhost:2020/api/update-email', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/update-email`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

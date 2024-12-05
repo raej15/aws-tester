@@ -4,7 +4,6 @@ import './settings.css';
 import CopyrightFooter from '../components/CopyrightFooter';
 import { useNavigate } from 'react-router-dom';
 import { logout, getLoggedInUserIdString} from '../utils/auth';
-import { get } from 'http';
 
 const Settings: React.FC = () => {
   const [userId, setUserId] = useState<string | null>(null);
@@ -34,7 +33,7 @@ const Settings: React.FC = () => {
         return;
       }
   
-      const response = await fetch(`http://localhost:2020/api/users/${userId}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/${userId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

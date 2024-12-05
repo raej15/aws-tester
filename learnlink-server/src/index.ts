@@ -30,7 +30,7 @@ const io = new Server(server, {
 
 
 
-const PORT = env.SERVER_PORT || 2020;
+const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
 const JWT_SECRET = env.JWT_SECRET || 'your_default_jwt_secret';
 
 
@@ -1053,6 +1053,6 @@ app.post ('/api/forgotpassword', async (req, res):Promise<any> => {
 /********* LISTEN FUNCT */
 
 // Start the server on port 2020
-server.listen(PORT, () => {
-  console.log(`server running on localhost:${PORT}`);
+server.listen(process.env.REACT_APP_API_URL, () => {
+  console.log(`server running on localhost:${process.env.REACT_APP_API_URL}`);
 });

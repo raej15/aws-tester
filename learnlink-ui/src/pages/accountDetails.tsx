@@ -20,7 +20,7 @@ const AccountDetails: React.FC = () => {
         const token = localStorage.getItem('token');
         console.log('Token:', token);
         if (token) {
-          const userResponse = await fetch('http://localhost:2020/api/users/profile', {
+          const userResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/users/profile`, {
             headers: {
               'Authorization': `Bearer ${token}`,
             },

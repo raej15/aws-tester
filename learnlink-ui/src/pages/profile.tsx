@@ -36,7 +36,7 @@ const Profile: React.FC = () => {
 
       try {
         // Fetch enum options
-        const enumsResponse = await fetch('http://localhost:2020/api/enums');
+        const enumsResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/enums`);
         const enumsData = await enumsResponse.json();
         setEnumOptions({
           grade: enumsData.grade,
@@ -47,7 +47,7 @@ const Profile: React.FC = () => {
         // Fetch the current user profile data
         const token = localStorage.getItem('token');
         if (token) {
-          const userResponse = await fetch('http://localhost:2020/api/users/profile', {
+          const userResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/users/profile`, {
             headers: {
               'Authorization': `Bearer ${token}`,
             },
@@ -143,7 +143,7 @@ const Profile: React.FC = () => {
         return;
       }
 
-      const response = await fetch('http://localhost:2020/api/users/update', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/update`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
