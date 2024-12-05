@@ -7,6 +7,7 @@ const UpdateEmail = () => {
   const [newEmail, setNewEmail] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const apiUrl = process.env.apiUrl;
 
   const handleOldEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setOldEmail(e.target.value);
@@ -23,7 +24,7 @@ const UpdateEmail = () => {
     setError('');
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/update-email`, {
+      const response = await fetch(`${apiUrl}/api/update-email`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

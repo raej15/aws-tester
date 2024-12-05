@@ -19,7 +19,7 @@ const PublicProfile = () => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/profile/${id}`, {
+                const response = await fetch(`${process.env.apiUrl}/api/users/profile/${id}`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`,
                     },

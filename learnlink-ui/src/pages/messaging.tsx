@@ -32,7 +32,7 @@ interface User {
   firstName: string;
   lastName: string;
 }
-const socket = io(process.env.REACT_APP_API_URL);
+const socket = io(process.env.apiUrl);
 
 
 
@@ -57,7 +57,7 @@ const Messaging: React.FC = () => {
 
   useEffect(() => {
     // Fetch users and chats from the API when the component mounts
-    axios.get(`${process.env.REACT_APP_API_URL}/api/users`)
+    axios.get(`${process.env.apiUrl}/api/users`)
       .then((response) => setUsers(response.data))
       .catch((error) => console.error('Error fetching users:', error));
 
@@ -66,7 +66,7 @@ const Messaging: React.FC = () => {
   
     const token = localStorage.getItem('token');
     console.log(token);
-    axios.get(`${process.env.REACT_APP_API_URL}/api/chats`, {
+    axios.get(`${process.env.apiUrl}/api/chats`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => {
@@ -82,7 +82,7 @@ const Messaging: React.FC = () => {
      
 
     if (token) {
-      axios.get(`${process.env.REACT_APP_API_URL}/api/currentUser`, {
+      axios.get(`${process.env.apiUrl}/api/currentUser`, {
         headers: { Authorization: `Bearer ${token}` },
       })
         .then((response) => setCurrentUserId(response.data.id))
@@ -247,7 +247,7 @@ const Messaging: React.FC = () => {
       }
   
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/chats/${user.id}`,
+        `${process.env.apiUrl}/api/chats/${user.id}`,
         payload,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -269,7 +269,7 @@ const Messaging: React.FC = () => {
       };
 
       // const studyGroupResponse = await axios.post(
-      //   `${process.env.REACT_APP_API_URL}/api/study-groups`, // Endpoint for study groups
+      //   `${process.env.apiUrl}/api/study-groups`, // Endpoint for study groups
       //   studyGroupPayload,
       //   { headers: { Authorization: `Bearer ${token}` }}
       // );

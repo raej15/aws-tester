@@ -9,7 +9,7 @@ const SwipeProfiles = ({ userId }: { userId: number }) => {
   useEffect(() => {
     const fetchProfiles = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/profiles/${userId}`);
+        const response = await fetch(`${process.env.apiUrl}/api/profiles/${userId}`);
         const data = await response.json();
         setProfiles(data);
       } catch (error) {
@@ -28,7 +28,7 @@ const SwipeProfiles = ({ userId }: { userId: number }) => {
 
   const handleSwipe = async (direction: 'Yes' | 'No', targetId: number, isStudyGroup: boolean) => {
     try {
-      await fetch(`${process.env.REACT_APP_API_URL}/api/swipe`, {
+      await fetch(`${process.env.apiUrl}/api/swipe`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

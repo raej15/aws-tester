@@ -18,7 +18,7 @@ const Navbar: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<User[]>([]);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-  const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
+  const apiUrl = process.env.apiUrl;
 
   // Function to handle search and display results
   const handleSearch = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,7 +34,7 @@ const Navbar: React.FC = () => {
     try {
       const token = localStorage.getItem('token');
       if (token) {
-        const response = await fetch(`${REACT_APP_API_URL}/api/users/search?query=${query}`, {
+        const response = await fetch(`${apiUrl}/api/users/search?query=${query}`, {
           headers: {
             'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,

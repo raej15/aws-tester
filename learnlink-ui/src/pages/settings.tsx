@@ -33,7 +33,7 @@ const Settings: React.FC = () => {
         return;
       }
   
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/${userId}`, {
+      const response = await fetch(`${process.env.apiUrl}/api/users/${userId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
