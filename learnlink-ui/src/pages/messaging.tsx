@@ -231,7 +231,7 @@ const Messaging: React.FC = () => {
       }
   
       const response = await axios.post(
-        `http://localhost:2020/api/chats/${user.id}`,
+        `${API_URL}/api/chats/${user.id}`,
         payload,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -304,7 +304,7 @@ const Messaging: React.FC = () => {
         return;
       }
 
-      await axios.delete(`http://localhost:2020/api/chats/${chatId}`, {
+      await axios.delete(`${API_URL}/api/chats/${chatId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
